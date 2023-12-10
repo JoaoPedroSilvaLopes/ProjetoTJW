@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div class="container my-2">
-		<h2>Adicionar Pessoa</h2>
+		<h2>Editar Pessoa</h2>
 		<form action="#" th:action="@{/save-pessoa}" th:object="${pessoa}" method="POST">
 			<input type="hidden" id="id" th:field="*{id}">
 			<input type="text" th:field="*{nome}" placeholder="Nome" class="form-control mb-4 col-4">

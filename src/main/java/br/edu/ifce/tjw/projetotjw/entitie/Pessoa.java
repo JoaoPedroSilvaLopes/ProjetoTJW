@@ -14,11 +14,16 @@ public class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
     private String nome;
-    @DateTimeFormat(pattern = "mm/dd/yyyy")
+    
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataNascimento;
+    
     private String cpf;
+    
     private String email;
+    
     private String telefone;
     
     protected Pessoa() {}

@@ -25,8 +25,8 @@ public class InitialPopulate implements CommandLineRunner {
 		p2.setDataNascimento(LocalDate.of(2002, 6, 4));
 		p2.setEmail("pedro@gmail.com");
 		Pessoa p3 = new Pessoa("Vitória");
-		p2.setDataNascimento(LocalDate.of(2003, 4, 11));
-		p2.setEmail("vitoria@gmail.com");
+		p3.setDataNascimento(LocalDate.of(2003, 4, 11));
+		p3.setEmail("vitoria@gmail.com");
 
 		pessoaRepo.save(p1);
 		pessoaRepo.save(p2);
