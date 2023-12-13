@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html 
+	lang="en"
+	xmlns:th="http://www.thymeleaf.org" 
+>
+<head>
+	<meta charset="UTF-8" />
+	<title>Sistema de Gestão de Pessoas</title>
+	<link rel="stylesheet"
+	 href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	 integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	 crossorigin="anonymous">
+	 <style>
+        h3 {
+			color: rgb(10, 138, 216);
+		}
+		
+		p {
+			color: #555555;
+		}
+		
+		body {
+			height: 100vh;
+		}
+		
+		.container-page {
+			height: 100%;
+			background-color: #efefef; 
+		}
+		
+		.panel {
+			background-color: #ffffff; 
+			height: max-content;
+			border-radius: 0.25rem;
+		}
+    </style>
+</head>
+<body>
+	<header th:insert="~{fragments/header.html :: header}"></header>
+	<div class="container-page px-4 py-4">
+		<div class="panel px-4 py-4">
+			<div class="d-flex flex-row justify-content-between align-items-center">
+				<div class="d-flex flex-column">
+					<h3>Pessoas</h3>
+					<p>Página de gerenciamento de pessoas</p>
+				</div>
+				<a th:href="@{/add-pessoa}" class="btn btn-primary btn-sm">Adicionar</a>
+			</div>
+			<table class="table table-bordered table-responsive-md">
+				<thead class="thead-light">
+					<tr>
+						<th>Nome</th>
+						<th>Email</th>
+						<th>CPF</th>
+						<th>Cidade</th>
+						<th>Departamento</th>
+						<th>Telefone</th>
+						<th>Ações</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="pessoa : ${listaPessoas}">
+						<td th:text="${pessoa.nome}" class="col-md-3"></td>
+						<td th:text="${pessoa.email}" class="col-md-2"></td>
+						<td th:text="${pessoa.cpf}" class="col-md-1"></td>
+						<td th:text="${pessoa.cidade.nome} + ' (' + ${pessoa.cidade.uf} + ')'" class="col-md-1"></td>
+						<td th:text="${pessoa.departamento.nome} + ' (' + ${pessoa.departamento.sigla} + ')'" class="col-md-3"></td>
+						<td th:text="${pessoa.telefone}" class="col-md-1"></td>
+						<td class="col-md-1">
+							<a th:href="@{/update-pessoa/{id}(id=${pessoa.id})}" class="btn btn-warning btn-sm">Alterar</a>
+							<a th:href="@{/delete-pessoa/{id}(id=${pessoa.id})}" class="btn btn-danger btn-sm">Excluir</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

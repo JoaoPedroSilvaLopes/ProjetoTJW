@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html 
+	lang="en"
+	xmlns:th="http://www.thymeleaf.org" 
+>
+<head>
+	<meta charset="UTF-8" />
+	<title>Sistema de Gestão de Pessoas</title>
+	<link rel="stylesheet"
+	 href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	 integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	 crossorigin="anonymous">
+	 <style>
+        h3 {
+			color: rgb(10, 138, 216);
+		}
+		
+		p {
+			color: #555555;
+		}
+		
+		body {
+			height: 100vh;
+		}
+		
+		.container-page {
+			height: 100%;
+			background-color: #efefef; 
+		}
+		
+		.panel, .sub-panel {
+			background-color: #ffffff; 
+			height: max-content;
+			border-radius: 0.25rem;
+		}
+    </style>
+</head>
+<body>
+	<header th:insert="~{fragments/header.html :: header}"></header>
+	<div class="container-page px-4 py-4">
+		<div class="panel px-4 py-4">
+			<div class="d-flex flex-row justify-content-between align-items-center">
+				<div class="d-flex flex-column">
+					<h3 th:text="${titulo} + ' Pessoa'"></h3>
+					<p>Página de formulário de pessoas</p>
+				</div>
+			</div>
+			<div class="sub-panel mt-2">
+				<form action="#" th:action="@{/save-pessoa}" th:object="${pessoa}" method="POST">
+					<input type="hidden" id="id" th:field="*{id}">
+					
+					<div class="row mb-4">
+						<div class="col-4">
+							<label>Nome</label>
+							<input type="text" th:field="*{nome}" placeholder="Nome" class="form-control">
+							<small th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="text-danger"></small>
+						</div>
+						<div class="col-4">
+							<label>Data de Nascimento</label>
+							<input type="date" th:field="*{dataNascimento}" placeholder="Data Nascimento" class="form-control">
+						</div>
+						<div class="col-4">
+							<label>CPF</label>
+							<input type="text" th:field="*{cpf}" placeholder="CPF" class="form-control">
+							<small th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}" class="text-danger"></small>
+						</div>
+					</div>
+					
+					<div class="row mb-4">
+						<div class="col-4">
+							<label>Email</label>
+							<input type="text" th:field="*{email}" placeholder="Email" class="form-control">
+							<small th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></small>
+						</div>
+						<div class="col-4">
+							<label>Cidade</label>
+							<select th:field="*{cidade}" class="form-control">
+								<option th:each="cidade: ${cidades}" th:value="${cidade.id}" th:text="${cidade.nome} + ' (' + ${cidade.uf} + ')'"></option>
+							</select>
+						</div>
+						<div class="col-4">
+							<label>Departamento</label>
+							<select th:field="*{departamento}" class="form-control">
+								<option th:each="departamento: ${departamentos}" th:value="${departamento.id}" th:text="${departamento.nome} + ' (' + ${departamento.sigla} + ')'"></option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="row mb-4">
+						<div class="col-4">
+							<label>Telefone</label>
+							<input type="text" th:field="*{telefone}" placeholder="Telefone" class="form-control">
+						</div>
+					</div>
+					
+					<div class="d-flex flex-row-reverse">
+						<button type="submit" class="btn btn-info btn-sm">Salvar</button>
+						<a th:href="@{/}" class="btn btn-danger mr-2 btn-sm">Retornar</a>
+					<div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
