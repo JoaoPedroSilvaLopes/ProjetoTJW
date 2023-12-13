@@ -32,15 +32,6 @@
 					<a style="text-decoration: none; color: #ffffff;" th:href="@{/}" class="mr-4">Pessoas</a>
 					<a style="text-decoration: none; color: #ffffff;" th:href="@{/departamento}" class="mr-4">Departamentos</a>
 			    </div>
-				<div sec:authorize="isAuthenticated()">
-					<ul class="nav navbar-nav navbar-right">
-						<li class="nav-item">
-							<form name="logoutForm" th:action="@{/logout}" method="post">
-								<input class="btn btn-danger btn-sm" type="submit" value="Sair" />
-							</form>
-						</li>
-					</ul>
-				</div>
 			</div>
 		</nav>
 	</div>

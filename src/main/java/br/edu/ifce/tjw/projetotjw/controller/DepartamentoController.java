@@ -64,6 +64,7 @@ public class DepartamentoController {
 		if (departamentoOpt.isEmpty()) {
 			throw new IllegalArgumentException("Departamento inválido");
 		}
+		
 		departamentoRepo.delete(departamentoOpt.get());
 		return "redirect:/departamento";
 	}
