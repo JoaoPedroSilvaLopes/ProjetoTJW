@@ -1,4 +1,4 @@
-## :pencil2: Fynance
+## :pencil2: Projeto TJW
 
 ## :file_folder: Sobre o projeto
 
